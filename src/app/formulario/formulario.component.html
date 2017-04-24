@@ -1,0 +1,25 @@
+<div class="form">
+  <form [formGroup]="contato">
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" formControlName="nome" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="text" formControlName="email" class="form-control">
+    </div>
+
+    <div formArrayName="telefones">
+      <div class="col-md-6 form-group" *ngFor="let telefone of telefones.controls; let i=index" [formGroupName]="i">
+        <label for="telefones">Telefone {{ i + 1 }}</label>
+        <input type="text" formControlName="telefone" class="form-control">
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-primary" (click)="addTelefone()">+</button>
+      </div>
+    </div>
+  </form>
+  <div class="col-md-12">
+    {{ contato.value | json }}
+  </div>
+</div>
